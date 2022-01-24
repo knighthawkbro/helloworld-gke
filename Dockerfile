@@ -21,7 +21,7 @@ COPY --from=builder /app/target/helloworld-*.jar /helloworld.jar
 
 # Adding the JMX_Exporter Jar for Prometheus JMX monitoring
 ADD prom-jmx-agent-config.yml /config.yaml
-ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.13.0/jmx_prometheus_javaagent-0.13.0.jar /jmx_prometheus_javaagent.jar
+ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar /jmx_prometheus_javaagent.jar
 
 # Run the web service on container startup.
 CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-javaagent:./jmx_prometheus_javaagent.jar=8080:config.yaml","-jar","/helloworld.jar"]
